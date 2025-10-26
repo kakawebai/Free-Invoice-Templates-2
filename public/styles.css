@@ -1858,3 +1858,60 @@ input::placeholder, textarea::placeholder {
         transform: translateY(0);
     }
 }
+
+/* Related & Resources responsive fix */
+.post-page .related-posts,
+.post-page .helpful-resources,
+.post-page .article-prev-next {
+    margin-top: 2rem;
+}
+
+.post-page .related-posts ul,
+.post-page .helpful-resources ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+}
+
+.post-page .related-posts a,
+.post-page .helpful-resources a,
+.post-page .article-prev-next a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.post-page .article-prev-next {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.post-page .article-prev-next .prev-article,
+.post-page .article-prev-next .next-article {
+    flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+    .post-page .article-prev-next {
+        justify-content: space-between;
+    }
+    .post-page .article-prev-next .prev-article,
+    .post-page .article-prev-next .next-article {
+        flex: 0 0 auto;
+    }
+}
+
+.post-page .article-prev-next .prev-article,
+.post-page .article-prev-next .next-article {
+    flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+    .post-page .article-prev-next {
+        justify-content: space-between;
+    }
+    .post-page .article-prev-next .prev-article,
+    .post-page .article-prev-next .next-article {
+        flex: 0 0 auto;
+    }
+}
