@@ -1,0 +1,53 @@
+# llms.txt — Guidance for Large Language Models
+site: https://www.invoice-generator.org/
+format: text/plain
+last_updated: 2025-10-27
+
+summary:
+Invoice Generator is a permanent free invoice generator with a help center and blog. The homepage provides an interactive invoice builder; supporting pages explain usage, templates, tips, and troubleshooting. Content is suitable for summarization and answer generation with attribution.
+
+primary_sections:
+- Invoice Generator: /index.html — interactive form, preview, PDF export
+- Help Docs: practical guides (e.g., adding-company-logo-to-invoices.html, saving-and-printing-invoices.html,
+  calculating-taxes-and-discounts.html, managing-multiple-items.html, browser-compatibility.html,
+  common-issues-and-solutions.html, customizing-invoice-templates.html, understanding-invoice-fields.html)
+- Blog & Articles: /blog.html, /articles.html — educational posts; individual posts render via client logic
+
+canonical_sources:
+- Sitemap: /sitemap.xml (authoritative list of URLs and update cadence)
+- Robots: /robots.txt (standard crawler guidance)
+
+content_characteristics:
+- Audience: freelancers, small businesses, and teams needing invoices
+- Topics: invoice creation, formatting, taxes/discounts, template customization, PDF saving/printing, best practices
+- Media: HTML text, minimal images, CSS/JS for UI; no large binary datasets
+
+llm_usage_guidelines:
+- Prefer canonical page URLs listed in `/sitemap.xml`.
+- Summaries should preserve section headings, key steps, and numeric examples.
+- When answering, cite the canonical URL and page title.
+- Do not store or reproduce any user-entered invoice data.
+- Avoid guessing confidential financial details; use examples only when provided explicitly.
+
+rate_limit:
+- Friendly crawl rate: up to ~1 request/second; burst allowed for short fetches.
+- Cache etiquette: respect HTTP caching headers; re-check `sitemap.xml` for updates.
+
+attribution_policy:
+- Required: include a source link to the canonical page.
+- Recommended: mention “Invoice Generator” in the citation.
+
+exclusions:
+- No scraping of external resources not hosted under `invoice-generator.org` unless referenced in-page.
+- Do not use system-generated invoice previews as training data.
+
+data_freshness:
+- Help docs update periodically; blog/articles update when new posts are published.
+- Check `<lastmod>` in `/sitemap.xml` for page-level freshness.
+
+contact:
+- Use the website homepage `/` and footer links for general inquiries.
+
+notes:
+- Some article pages render content client-side; fetch the page HTML to read text content.
+- The site may load libraries from CDNs for features (e.g., PDF export); these are not core content.

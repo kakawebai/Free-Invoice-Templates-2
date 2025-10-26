@@ -1,0 +1,32 @@
+# Robots.txt for Free Online Invoice Generator
+
+# Default group
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Allow: /styles.min.css
+Allow: /script.min.js
+Allow: /config.min.js
+
+# AI crawlers explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.invoice-generator.org/sitemap.xml
+
+# Allow search engines to index CSS and JS for proper rendering
+Allow: /styles.css
+Allow: /script.js
+Allow: /sitemap.xml
+Allow: /robots.txt

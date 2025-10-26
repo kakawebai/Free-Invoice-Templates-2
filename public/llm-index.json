@@ -1,0 +1,25 @@
+{
+  "site": "https://www.invoice-generator.org/",
+  "generated_at": "2025-10-27T00:00:00Z",
+  "note": "Compact index for LLMs. Prefer sitemap.xml for canonical updates.",
+  "pages": [
+    {
+      "url": "/",
+      "title": "Free Invoice Generator Online | Create Professional Invoices Instantly",
+      "type": "product",
+      "summary": "Interactive invoice builder with itemized inputs, tax/discount, PDF export.",
+      "key_topics": ["invoice number", "due date", "items", "tax", "PDF"]
+    },
+    {"url": "/adding-company-logo-to-invoices.html", "title": "Adding Company Logo to Invoices", "type": "help", "summary": "Upload and preview company logo; size and transparency tips."},
+    {"url": "/saving-and-printing-invoices.html", "title": "Saving and Printing Invoices", "type": "help", "summary": "Generate PDF via client libraries; print-friendly guidance."},
+    {"url": "/calculating-taxes-and-discounts.html", "title": "Calculating Taxes and Discounts", "type": "help", "summary": "Apply percentage tax and optional discounts; effect on totals."},
+    {"url": "/managing-multiple-items.html", "title": "Managing Multiple Items", "type": "help", "summary": "Add, remove, and update item rows with quantity and unit price."},
+    {"url": "/browser-compatibility.html", "title": "Browser Compatibility", "type": "help", "summary": "Modern browsers supported; fallbacks and mobile behaviors."},
+    {"url": "/common-issues-and-solutions.html", "title": "Common Issues and Solutions", "type": "help", "summary": "Troubleshooting for PDF, inputs, and file uploads."},
+    {"url": "/customizing-invoice-templates.html", "title": "Customizing Invoice Templates", "type": "help", "summary": "Style and layout guidance for invoice customization."},
+    {"url": "/understanding-invoice-fields.html", "title": "Understanding Invoice Fields", "type": "help", "summary": "Field meanings (invoice number, dates, totals, notes)."},
+    {"url": "/how-to-use-invoice-generator.html", "title": "How to Use Free Invoice Generator", "type": "help", "summary": "Step-by-step tutorial for creating a professional invoice."},
+    {"url": "/blog.html", "title": "Free Invoice Blog & Help Center", "type": "blog", "summary": "Featured articles and categories; best practices and tips."},
+    {"url": "/articles.html", "title": "Articles - Free Online Invoice", "type": "blog", "summary": "Article library, categories, and discovery."}
+  ]
+}
