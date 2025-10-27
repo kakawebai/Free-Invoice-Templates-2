@@ -17,11 +17,12 @@ Select Credential: + Create new credential
 
 #### 创建新凭证步骤
 1. 点击 **+ Create new credential**
-2. 选择 **Basic Auth**
+2. 选择 **HTTP Header Auth**
 3. 配置如下：
    - **Name**: `GitHub API Token` (点击"Unnamed credential"修改名称)
-   - **User**: `kakawebai`
-   - **Password**: `您的GitHub Personal Access Token`
+   - **Headers**: 
+     - **Name**: `Authorization`
+     - **Value**: `Basic {{ base64_encode('kakawebai:您的GitHub Personal Access Token') }}`
    - **Allowed HTTP Request Domains**: `All` (保持默认)
 4. 点击 **Save**
 
@@ -88,11 +89,12 @@ Reject Unauth: true
 ### 步骤1: 创建GitHub API凭证
 1. 进入 **Settings** → **Credentials**
 2. 点击 **New Credential**
-3. 选择 **Basic Auth**
+3. 选择 **HTTP Header Auth**
 4. 填写：
    - **Name**: `GitHub API Token` (修改默认名称)
-   - **User**: `kakawebai`
-   - **Password**: `您的GitHub Personal Access Token`
+   - **Headers**: 
+     - **Name**: `Authorization`
+     - **Value**: `Basic {{ base64_encode('kakawebai:您的GitHub Personal Access Token') }}`
    - **Allowed HTTP Request Domains**: `All` (保持默认)
 5. 点击 **Save**
 
