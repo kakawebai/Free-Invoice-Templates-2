@@ -9,12 +9,11 @@
 
 #### Send Headers
 - **状态**: `开启`
+- **Specify Headers**: `Using Fields Below`
 - **配置**:
-```
-Content-Type: application/json
-Accept: application/vnd.github.v3+json
-User-Agent: N8N-Automation
-```
+  - **Name**: `Content-Type`, **Value**: `application/json`
+  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
+  - **Name**: `User-Agent`, **Value**: `N8N-Automation`
 
 #### Send Body
 - **状态**: `关闭` (GET请求不需要Body)
@@ -28,12 +27,11 @@ User-Agent: N8N-Automation
 
 #### Send Headers
 - **状态**: `开启`
+- **Specify Headers**: `Using Fields Below`
 - **配置**:
-```
-Content-Type: application/json
-Accept: application/vnd.github.v3+json
-User-Agent: N8N-Automation
-```
+  - **Name**: `Content-Type`, **Value**: `application/json`
+  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
+  - **Name**: `User-Agent`, **Value**: `N8N-Automation`
 
 #### Send Body
 - **状态**: `开启`
@@ -61,10 +59,21 @@ User-Agent: N8N-Automation
 - **GET请求**: 开启 (需要认证和内容类型)
 - **PUT请求**: 开启 (需要认证和内容类型)
 
-#### 必要的Headers:
-- `Content-Type: application/json` - 指定JSON格式
-- `Accept: application/vnd.github.v3+json` - GitHub API版本
-- `User-Agent: N8N-Automation` - 用户代理标识
+#### 必要的Headers (Using Fields Below):
+- **Name**: `Content-Type`, **Value**: `application/json` - 指定JSON格式
+- **Name**: `Accept`, **Value**: `application/vnd.github.v3+json` - GitHub API版本
+- **Name**: `User-Agent`, **Value**: `N8N-Automation` - 用户代理标识
+
+#### 使用JSON格式配置Headers:
+- **Specify Headers**: `Using JSON`
+- **JSON配置**:
+```json
+{
+  "Content-Type": "application/json",
+  "Accept": "application/vnd.github.v3+json",
+  "User-Agent": "N8N-Automation"
+}
+```
 
 ### Send Body
 - **用途**: 发送请求体数据
