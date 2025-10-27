@@ -9,7 +9,8 @@
 - **URL**: `https://api.github.com/repos/kakawebai/Free-Invoice-Templates-2/contents/articles/articles.json`
 
 #### Authentication 标签页
-- **Type**: `Basic Auth`
+- **Type**: `Generic Credential Type`
+- **Authentication**: `Basic Auth`
 - **Username**: `kakawebai`
 - **Password**: `您的GitHub Personal Access Token`
 
@@ -34,7 +35,8 @@ User-Agent: N8N-Automation
 - **URL**: `https://api.github.com/repos/kakawebai/Free-Invoice-Templates-2/contents/articles/articles.json`
 
 #### Authentication 标签页
-- **Type**: `Basic Auth`
+- **Type**: `Generic Credential Type`
+- **Authentication**: `Basic Auth`
 - **Username**: `kakawebai`
 - **Password**: `您的GitHub Personal Access Token`
 
