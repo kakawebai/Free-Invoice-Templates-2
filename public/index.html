@@ -45,11 +45,16 @@
     
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://your-project.supabase.co">
     
-    <!-- Supabase Client - Load asynchronously -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" async></script>
-    <script src="/config.min.js" async></script>
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://your-project.supabase.co" crossorigin>
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="/config.min.js" defer></script>
     
     <!-- Structured Data - Rich Snippets for SEO -->
     <script type="application/ld+json">
@@ -416,6 +421,6 @@
         </footer>
     </div>
 
-    <script src="/script.min.js"></script>
+    <script src="/script.min.js" defer></script>
 </body>
 </html>
