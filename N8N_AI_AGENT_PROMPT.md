@@ -67,7 +67,7 @@
 文章内容要求：
 - 使用HTML格式（p、h1、h2、ul、li等标签）
 - 自然嵌入URL链接，锚文本用"{{ $json['关键词'] }}"
-- 不要重复使用同一个URL超过3次
+- 不要重复使用同一个URL超过2次
 - 确保文章结构清晰，有合理的段落划分
 ```
 
@@ -107,28 +107,91 @@ Webhook触发器 → AI Agent节点 → 处理文章数据 → 获取当前SHA �
 
 #### 节点3: 处理文章数据 (Function节点)
 ```javascript
-// 处理AI Agent返回的文章数据
-const aiResponse = $('AI Agent').json;
+// 使用修正的AI Agent输出处理器
+// 完整代码见: articles/n8n-ai-agent-processor.js
+
+// 1) 解析 AI 输出为对象（容错）
+const raw = $('AI Agent').json.output;
+let parsed = {};
+try {
+  // 移除代码块围栏和多余空白
+  const cleaned = String(raw)
+    .replace(/^```json\s*/i, '')
+    .replace(/```$/i, '')
+    .trim();
+  parsed = JSON.parse(cleaned);
+} catch (e) {
+  throw new Error('AI 输出不是合法 JSON，需返回 {"title","content"} 格式。原始值: ' + raw);
+}
+
+// 2) 字段校验
+const title = (parsed.title || '').trim();
+let content = (parsed.content || '').trim();
+if (!title || !content) {
+  throw new Error('缺少必要字段: title 或 content');
+}
+
+// 3) HTML格式检查 - 修正：应该在链接处理之前检查
+if (!/<p>|<h[1-6]>|<ul>|<ol>/.test(content)) {
+  // 如果没有HTML标签，自动转换为HTML格式
+  content = content
+    .split('\n\n')
+    .map(para => {
+      if (para.startsWith('## ')) {
+        return `<h2>${para.replace('## ', '')}</h2>`;
+      } else if (para.startsWith('### ')) {
+        return `<h3>${para.replace('### ', '')}</h3>`;
+      } else if (para.includes('- ')) {
+        const items = para.split('\n- ').filter(Boolean);
+        return `<ul>${items.map(item => `<li>${item.replace('- ', '')}</li>`).join('')}</ul>`;
+      } else {
+        return `<p>${para}</p>`;
+      }
+    })
+    .join('\n');
+}
+
+// 4) 链接规则：至少插入 1 个链接（内链或指定 URL）
+const passedUrl = $json.URL || '';
+const hasAnyLink = /<a\s+href=["'][^"']+["']/i.test(content);
+
+// 如果没有链接，按策略插入一个
+if (!hasAnyLink) {
+  const linkHref = passedUrl || '/invoice/free-online-invoice-generator';
+  const linkText = passedUrl ? '查看详细教程' : '免费在线发票生成器';
+  const linkHtml = `\n<p><a href="${linkHref}" rel="noopener" target="_blank">${linkText}</a></p>\n`;
+
+  // 尝试在第二段后插入，如果只有一段则追加到文末
+  const parts = content.split(/\n{2,}/);
+  if (parts.length > 1) {
+    parts.splice(1, 0, linkHtml);
+    content = parts.join('\n\n');
+  } else {
+    content = content + linkHtml;
+  }
+}
+
+// 5) 输出给下游 HTTP 节点
+const author = "AI Content Generator";
+const category = "seo";
+const tags = ["ai-generated", "seo"];
 
 // 生成文章描述（去除HTML标签）
-const plainText = aiResponse.content.replace(/<[^>]+>/g, '');
+const plainText = content.replace(/<[^>]+>/g, '');
 const description = plainText.substring(0, 200).trim() + '...';
 
-const articleData = {
-  title: aiResponse.title,
-  description: description,
-  content: aiResponse.content,
-  author: "AI Content Generator",
+return {
+  title,
+  description,
+  content,
+  author,
   published_at: new Date().toISOString().split('T')[0],
-  category: "seo",
-  tags: ["ai-generated", "seo"],
-  meta_title: aiResponse.title,
+  category,
+  tags,
+  meta_title: title,
   meta_description: plainText.substring(0, 150).trim() + '...',
   featured: false
 };
-
-// 返回与GitHub配置兼容的数据格式
-return articleData;
 ```
 
 #### 节点4: 获取当前articles.json的SHA
