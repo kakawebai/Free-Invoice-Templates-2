@@ -97,18 +97,8 @@ function buildArticlesPage() {
     const prefix = articlesContent.slice(0, startIdx);
     const suffix = noResultsIdx !== -1 ? articlesContent.slice(noResultsIdx) : articlesContent.slice(containerEndIdx);
 
-    // 精选资源块，增强内部链接
-    const resourcesBlock = `
-      <section class="helpful-resources">
-        <h3>Helpful Resources</h3>
-        <ul>
-          <li><a href="invoice-templates.html">Explore Invoice Templates</a></li>
-          <li><a href="how-to-use-invoice-generator.html">How to Use Guide</a></li>
-          <li><a href="saving-and-printing-invoices.html">Saving & Printing Invoices</a></li>
-        </ul>
-      </section>`;
-
-    articlesContent = `${prefix}${startTag}${articlesHTML}${resourcesBlock}</div>${suffix}`;
+    // 移除 All Articles 页中的“Helpful Resources”块（按需只展示文章卡片）
+    articlesContent = `${prefix}${startTag}${articlesHTML}</div>${suffix}`;
   }
 
   // 用仅保留筛选功能的精简脚本替换旧的动态渲染脚本

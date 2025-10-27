@@ -136,79 +136,9 @@
  
    // 更新页面标题和meta
    document.title = article.meta_title || (article.title + ' | Free online invoice');
-   
-   // 更新meta description
    let metaDesc = document.querySelector('meta[name="description"]');
    if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
    metaDesc.content = article.meta_description || article.description;
-   
-   // 更新Open Graph tags
-   const updateMetaTag = (property, content) => {
-     let tag = document.querySelector(`meta[property="${property}"]`) || document.querySelector(`meta[name="${property}"]`);
-     if (!tag) {
-       tag = document.createElement('meta');
-       tag.setAttribute('property', property);
-       document.head.appendChild(tag);
-     }
-     tag.content = content;
-   };
-   
-   const currentUrl = window.location.href;
-   const articleImage = '/images/og-article-image.jpg';
-   
-   updateMetaTag('og:title', article.meta_title || article.title);
-   updateMetaTag('og:description', article.meta_description || article.description);
-   updateMetaTag('og:url', currentUrl);
-   updateMetaTag('og:image', articleImage);
-   updateMetaTag('og:type', 'article');
-   updateMetaTag('og:site_name', 'Free online invoice');
-   
-   updateMetaTag('twitter:title', article.meta_title || article.title);
-   updateMetaTag('twitter:description', article.meta_description || article.description);
-   updateMetaTag('twitter:image', articleImage);
-   updateMetaTag('twitter:card', 'summary_large_image');
-   
-   // 更新canonical URL
-   let canonicalLink = document.querySelector('link[rel="canonical"]');
-   if (!canonicalLink) {
-     canonicalLink = document.createElement('link');
-     canonicalLink.rel = 'canonical';
-     document.head.appendChild(canonicalLink);
-   }
-   canonicalLink.href = currentUrl;
-   
-   // 更新author meta
-   updateMetaTag('author', article.author || 'FreeOnlineInvoice.org');
-   
-   // 添加JSON-LD结构化数据
-   const jsonLdScript = document.createElement('script');
-   jsonLdScript.type = 'application/ld+json';
-   jsonLdScript.textContent = JSON.stringify({
-     "@context": "https://schema.org",
-     "@type": "Article",
-     "headline": article.meta_title || article.title,
-     "description": article.meta_description || article.description,
-     "image": articleImage,
-     "author": {
-       "@type": "Organization",
-       "name": article.author || 'FreeOnlineInvoice.org'
-     },
-     "publisher": {
-       "@type": "Organization",
-       "name": "Free online invoice",
-       "logo": {
-         "@type": "ImageObject",
-         "url": "/images/logo.png"
-       }
-     },
-     "datePublished": article.published_at,
-     "dateModified": article.published_at,
-     "mainEntityOfPage": {
-       "@type": "WebPage",
-       "@id": currentUrl
-     }
-   });
-   document.head.appendChild(jsonLdScript);
  
    // 相关文章计算（按标签重叠+同分类+最新优先）
    const allArticles = Object.values(staticArticles);
