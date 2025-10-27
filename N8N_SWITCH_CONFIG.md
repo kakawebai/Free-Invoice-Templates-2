@@ -36,6 +36,7 @@
 #### Send Body
 - **状态**: `开启`
 - **Content Type**: `JSON`
+- **Specify Body**: `Using JSON`
 - **Body内容**:
 ```json
 {
@@ -44,6 +45,14 @@
   "sha": "{{ $json.currentSHA }}"
 }
 ```
+
+#### 使用Fields Below配置Body:
+- **Content Type**: `JSON`
+- **Specify Body**: `Using Fields Below`
+- **配置**:
+  - **Name**: `message`, **Value**: `Add new article via N8N automation: {{ $json.article.title }}`
+  - **Name**: `content`, **Value**: `{{ $json.encodedContent }}`
+  - **Name**: `sha`, **Value**: `{{ $json.currentSHA }}`
 
 ---
 
@@ -80,7 +89,20 @@
 - **GET请求**: 关闭 (GET请求通常没有Body)
 - **PUT请求**: 开启 (需要发送更新数据)
 
-#### Body内容说明:
+#### Content Type选项:
+- **JSON**: 用于发送JSON格式数据 (推荐)
+- **Form Urlencoded**: 用于发送表单数据
+- **Form-Data**: 用于发送文件和表单数据
+- **n8n Binary File**: 用于发送二进制文件
+- **Raw**: 用于发送原始数据
+- **Using Fields Below**: 使用字段方式配置
+
+#### Body配置方法:
+
+##### 使用JSON格式 (推荐):
+- **Content Type**: `JSON`
+- **Specify Body**: `Using JSON`
+- **Body内容**:
 ```json
 {
   "message": "提交消息",
@@ -88,6 +110,14 @@
   "sha": "当前文件的SHA值"
 }
 ```
+
+##### 使用Fields Below格式:
+- **Content Type**: `JSON`
+- **Specify Body**: `Using Fields Below`
+- **配置**:
+  - **Name**: `message`, **Value**: `提交消息`
+  - **Name**: `content`, **Value**: `Base64编码的文件内容`
+  - **Name**: `sha`, **Value**: `当前文件的SHA值`
 
 ---
 
