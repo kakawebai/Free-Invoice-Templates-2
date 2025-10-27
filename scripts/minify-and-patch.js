@@ -8,7 +8,7 @@ const csso = require('csso');
 async function minifyAssets() {
   const publicDir = path.join(__dirname, '..', 'public');
   const cssFiles = ['styles.css'];
-  const jsFiles = ['script.js', 'config.js'];
+  const jsFiles = ['script.js'];
 
   // Ensure public directory exists
   if (!fs.existsSync(publicDir)) {
@@ -66,9 +66,7 @@ async function minifyAssets() {
     content = content.replace(/src=("|')\/?script\.js\1/g, 'src=$1/script.min.js$1');
     content = content.replace(/src=("|')script\.js\1/g, 'src=$1script.min.js$1');
 
-    // config.js -> config.min.js
-    content = content.replace(/src=("|')\/?config\.js\1/g, 'src=$1/config.min.js$1');
-    content = content.replace(/src=("|')config\.js\1/g, 'src=$1config.min.js$1');
+    // config.js 已移除，不进行替换
 
     if (content !== original) {
       fs.writeFileSync(filePath, content);
@@ -88,7 +86,7 @@ async function minifyAssets() {
     // replace cached filenames
     sw = sw.replace(/\/styles\.css/g, '/styles.min.css')
            .replace(/\/script\.js/g, '/script.min.js')
-           .replace(/\/config\.js/g, '/config.min.js');
+           ;
 
     if (sw !== originalSw) {
       fs.writeFileSync(swPath, sw);

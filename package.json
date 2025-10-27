@@ -8,8 +8,7 @@
     "serve": "npm run build:articles && python -m http.server 8000 --directory public",
     "build": "npm run build:articles",
     "build:articles": "node articles/build-articles.js",
-    "test": "echo 'No tests specified'",
-    "configure:supabase": "node scripts/supabase-url-config.js"
+    "test": "echo 'No tests specified'"
   },
   "keywords": [
     "invoice",
@@ -24,18 +23,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/free-online-invoice-generator"
+    "url": "https://github.com/kakawebai/Free-Invoice-Templates-2.git"
   },
   "engines": {
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "@octokit/rest": "^20.0.2",
-    "@supabase/supabase-js": "^2.0.0",
-    "@vercel/blob": "latest",
-    "marked": "^16.4.1",
-    "puppeteer": "^24.26.1",
-    "vercel": "^48.6.0"
+    "marked": "^16.4.1"
   },
   "devDependencies": {
     "csso": "^5.0.5",

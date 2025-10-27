@@ -30,8 +30,7 @@
     
     <link rel="stylesheet" href="/styles.min.css">
     <link rel="stylesheet" href="/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/config.min.js"></script>
+    <!-- Removed Supabase scripts; posts now load purely from static post-data.js -->
 </head>
 <body class="post-page">
     <header class="site-header">
@@ -70,5 +69,86 @@
         <p><a href="blog.html">← Back to Blog</a></p>
     </footer>
     <script src="post-data.js"></script>
+    <script>
+    // 动态渲染文章内容并注入 JSON-LD（Article/BlogPosting）
+    (function () {
+        function getParam(name) {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                return params.get(name);
+            } catch (e) { return null; }
+        }
+        function stripHtml(html) {
+            if (!html) return '';
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            return (div.textContent || div.innerText || '').trim();
+        }
+        function truncate(text, maxLen) {
+            if (!text) return '';
+            if (text.length <= maxLen) return text;
+            return text.slice(0, maxLen - 1) + '…';
+        }
+        function setMeta(selector, attr, value) {
+            var el = document.querySelector(selector);
+            if (el && value) el.setAttribute(attr, value);
+        }
+
+        var slug = getParam('slug');
+        var data = (typeof staticArticles !== 'undefined') ? staticArticles : null;
+        var article = (slug && data) ? data[slug] : null;
+
+        var container = document.getElementById('post-content');
+        if (!article) {
+            if (container) {
+                container.innerHTML = '<h1>Article Not Found</h1><p>The requested article could not be located. Please return to the <a href="articles.html">Articles</a> page.</p>';
+            }
+            return;
+        }
+
+        // 渲染内容
+        var title = article.meta_title || article.title || 'Blog Post';
+        var descPlain = stripHtml(article.meta_description || article.description || '');
+        var pageUrl = (window.location && window.location.href) ? window.location.href : '';
+        var imageUrl = (window.location && window.location.origin) ? (window.location.origin + '/images/og-image.jpg') : '/images/og-image.jpg';
+        var authorName = article.author || 'FreeOnlineInvoice.org';
+
+        document.title = title;
+        if (container) {
+            container.innerHTML = (article.content || '');
+        }
+
+        // 更新常用 meta/OG/Twitter
+        setMeta('meta[name="description"]', 'content', truncate(descPlain, 300));
+        setMeta('meta[property="og:title"]', 'content', title);
+        setMeta('meta[property="og:description"]', 'content', truncate(descPlain, 200));
+        setMeta('meta[property="og:url"]', 'content', pageUrl);
+        setMeta('meta[property="og:image"]', 'content', imageUrl);
+        setMeta('meta[property="twitter:title"]', 'content', title);
+        setMeta('meta[property="twitter:description"]', 'content', truncate(descPlain, 200));
+        setMeta('meta[property="twitter:url"]', 'content', pageUrl);
+        setMeta('meta[property="twitter:image"]', 'content', imageUrl);
+        setMeta('link[rel="canonical"]', 'href', pageUrl);
+        setMeta('meta[name="author"]', 'content', authorName);
+
+        // 注入 JSON-LD（Article/BlogPosting）
+        var jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": title,
+            "description": truncate(descPlain, 350),
+            "datePublished": article.published_at || '',
+            "author": { "@type": "Person", "name": authorName },
+            "image": imageUrl,
+            "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+            "articleSection": article.category || 'blog',
+            "keywords": Array.isArray(article.tags) ? article.tags : []
+        };
+        var s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.text = JSON.stringify(jsonLd);
+        document.head.appendChild(s);
+    })();
+    </script>
 </body>
 </html>

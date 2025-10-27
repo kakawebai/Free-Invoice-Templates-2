@@ -5,33 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles - Free Online Invoice</title>
     <meta name="description" content="Browse all invoicing articles: templates, tips, tutorials, and best practices.">
+    <!-- 仅加载压缩后的样式，减少阻塞与重复解析 -->
     <link rel="stylesheet" href="/styles.min.css">
-    <link rel="stylesheet" href="/styles.css">
     
-<link rel="canonical" href="https://www.invoice-generator.org/articles.html">
+    <link rel="canonical" href="https://freeonlineinvoice.org/articles.html">
 <meta name="author" content="invoice-generator.org">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="language" content="en">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.invoice-generator.org/articles.html">
+    <meta property="og:url" content="https://freeonlineinvoice.org/articles.html">
 <meta property="og:title" content="All Articles | Free Invoice Help & Tutorials">
 <meta property="og:description" content="Explore invoicing guides, templates, and best practices in one place.">
-<meta property="og:image" content="https://www.invoice-generator.org/images/og-image.jpg">
+    <meta property="og:image" content="https://freeonlineinvoice.org/images/og-image.jpg">
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://www.invoice-generator.org/articles.html">
+    <meta property="twitter:url" content="https://freeonlineinvoice.org/articles.html">
 <meta property="twitter:title" content="All Articles | Free Invoice Help & Tutorials">
 <meta property="twitter:description" content="Explore invoicing guides, templates, and best practices in one place.">
-<meta property="twitter:image" content="https://www.invoice-generator.org/images/og-image.jpg">
+    <meta property="twitter:image" content="https://freeonlineinvoice.org/images/og-image.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "SiteNavigationElement", "name": "Invoice Generator", "url": "https://www.invoice-generator.org/"},
-    {"@type": "SiteNavigationElement", "name": "Blog & Help", "url": "https://www.invoice-generator.org/blog.html"},
-    {"@type": "SiteNavigationElement", "name": "All Articles", "url": "https://www.invoice-generator.org/articles.html"},
-    {"@type": "SiteNavigationElement", "name": "How to Use Guide", "url": "https://www.invoice-generator.org/how-to-use-invoice-generator.html"}
+{"@type": "SiteNavigationElement", "name": "Invoice Generator", "url": "https://freeonlineinvoice.org/"},
+{"@type": "SiteNavigationElement", "name": "Blog & Help", "url": "https://freeonlineinvoice.org/blog.html"},
+{"@type": "SiteNavigationElement", "name": "All Articles", "url": "https://freeonlineinvoice.org/articles.html"},
+{"@type": "SiteNavigationElement", "name": "How to Use Guide", "url": "https://freeonlineinvoice.org/how-to-use-invoice-generator.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeonlineinvoice.org/"},
+{"@type": "ListItem", "position": 2, "name": "Blog & Help", "item": "https://freeonlineinvoice.org/blog.html"},
+{"@type": "ListItem", "position": 3, "name": "All Articles", "item": "https://freeonlineinvoice.org/articles.html"}
   ]
 }
 </script>
@@ -94,9 +105,7 @@
             <time datetime="2025-10-25">2025/10/25</time>
           </div>
         </div>
-        <div class="article-excerpt"><h1>The Ultimate Guide to Free Invoice Templates to Download for Your Business</h1>
-
-<p>In today's competitive business landscape, efficiency and prof...</div>
+        <div class="article-excerpt">The Ultimate Guide to Free Invoice Templates to Download for Your Business In today's competitive business landscape, efficiency and prof...</div>
         <div class="article-footer">
           <div class="article-tags"><a class="tag" href="articles.html?tag=invoice">invoice</a><a class="tag" href="articles.html?tag=business">business</a></div>
           <a href="post.html?slug=the-ultimate-guide-to-free-invoice-templates-to-do" class="read-more">Read More →</a>
@@ -111,13 +120,7 @@
             <time datetime="2025-10-24">2025/10/24</time>
           </div>
         </div>
-        <div class="article-excerpt"># 免费在Word中创建专业发票格式的完整指南
-
-
-<p><a href="/invoice/free-online-invoice-generator" rel="noopener" target="_blank">免费在线发票生成器</a></p>
-
-
-在当今数字化的商业环境中，发票是任何企业不...</div>
+        <div class="article-excerpt"># 免费在Word中创建专业发票格式的完整指南 免费在线发票生成器 在当今数字化的商业环境中，发票是任何企业不...</div>
         <div class="article-footer">
           <div class="article-tags"><a class="tag" href="articles.html?tag=invoice">invoice</a><a class="tag" href="articles.html?tag=business">business</a></div>
           <a href="post.html?slug=word" class="read-more">Read More →</a>
@@ -192,7 +195,7 @@
         </div>
     </footer>
 
-                            <script>
+                                <script>
         document.addEventListener('DOMContentLoaded', function() {
             var cat = document.getElementById('category-filter');
             var search = document.getElementById('search-filter');
@@ -360,6 +363,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            /* 延迟渲染视口外内容，提升 Speed Index（Chrome/Lighthouse 支持） */
+            content-visibility: auto;
+            contain-intrinsic-size: 300px 200px;
         }
 
         .article-card:hover {
@@ -524,32 +530,32 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://www.invoice-generator.org/post.html?slug=the-ultimate-guide-to-free-invoice-templates-to-do"
+            "url": "https://freeonlineinvoice.org/post.html?slug=the-ultimate-guide-to-free-invoice-templates-to-do"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "url": "https://www.invoice-generator.org/post.html?slug=word"
+            "url": "https://freeonlineinvoice.org/post.html?slug=word"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "url": "https://www.invoice-generator.org/post.html?slug=free-invoice-format-in-word-how-to-create-professional-invoices"
+            "url": "https://freeonlineinvoice.org/post.html?slug=free-invoice-format-in-word-how-to-create-professional-invoices"
     },
     {
       "@type": "ListItem",
       "position": 4,
-      "url": "https://www.invoice-generator.org/post.html?slug=how-to-create-professional-invoices"
+            "url": "https://freeonlineinvoice.org/post.html?slug=how-to-create-professional-invoices"
     },
     {
       "@type": "ListItem",
       "position": 5,
-      "url": "https://www.invoice-generator.org/post.html?slug=top-10-invoice-mistakes"
+            "url": "https://freeonlineinvoice.org/post.html?slug=top-10-invoice-mistakes"
     },
     {
       "@type": "ListItem",
       "position": 6,
-      "url": "https://www.invoice-generator.org/post.html?slug=free-vs-paid-invoice-templates"
+            "url": "https://freeonlineinvoice.org/post.html?slug=free-vs-paid-invoice-templates"
     }
   ]
 }

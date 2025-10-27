@@ -6,6 +6,16 @@ const { marked } = require('marked');
 const articlesData = require('./articles.json');
 const articles = articlesData.articles;
 
+// 简单的摘要生成：去除HTML标签、压缩空白并按长度截断
+function toExcerpt(input, max = 200) {
+  const text = (input || '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (text.length <= max) return text;
+  return text.slice(0, max) + '…';
+}
+
 console.log('🚀 开始构建文章页面...');
 
 // 生成博客首页 (blog.html)
@@ -61,7 +71,7 @@ function buildArticlesPage() {
             <time datetime="${article.published_at}">${new Date(article.published_at).toLocaleDateString()}</time>
           </div>
         </div>
-        <div class="article-excerpt">${article.description}</div>
+        <div class="article-excerpt">${toExcerpt(article.description, 200)}</div>
         <div class="article-footer">
           <div class="article-tags">${(article.tags || []).map(tag => `<a class="tag" href="articles.html?tag=${encodeURIComponent(tag)}">${tag}</a>`).join('')}</div>
           <a href="post.html?slug=${article.slug}" class="read-more">Read More →</a>

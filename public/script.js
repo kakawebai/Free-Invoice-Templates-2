@@ -113,17 +113,26 @@ function setupMobileNavigation() {
     const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
     const navLinks = document.querySelectorAll('.mobile-nav-menu .nav-link');
 
-    // Toggle mobile menu
+    // Toggle mobile menu (null-safe)
     function toggleMobileMenu() {
-        mobileNavMenu.classList.toggle('active');
-        mobileNavOverlay.classList.toggle('active');
-        document.body.style.overflow = mobileNavMenu.classList.contains('active') ? 'hidden' : '';
+        if (mobileNavMenu) {
+            mobileNavMenu.classList.toggle('active');
+        }
+        if (mobileNavOverlay) {
+            mobileNavOverlay.classList.toggle('active');
+        }
+        const isActive = mobileNavMenu && mobileNavMenu.classList && mobileNavMenu.classList.contains('active');
+        document.body.style.overflow = isActive ? 'hidden' : '';
     }
 
-    // Close mobile menu
+    // Close mobile menu (null-safe)
     function closeMobileMenu() {
-        mobileNavMenu.classList.remove('active');
-        mobileNavOverlay.classList.remove('active');
+        if (mobileNavMenu && mobileNavMenu.classList) {
+            mobileNavMenu.classList.remove('active');
+        }
+        if (mobileNavOverlay && mobileNavOverlay.classList) {
+            mobileNavOverlay.classList.remove('active');
+        }
         document.body.style.overflow = '';
     }
 
@@ -148,13 +157,18 @@ function setupMobileNavigation() {
     // Handle window resize
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            closeMobileMenu();
+            // Only attempt to close if menu exists and is active
+            const isActive = mobileNavMenu && mobileNavMenu.classList && mobileNavMenu.classList.contains('active');
+            if (isActive) {
+                closeMobileMenu();
+            }
         }
     });
 
     // Handle escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileNavMenu.classList.contains('active')) {
+        const isActive = mobileNavMenu && mobileNavMenu.classList && mobileNavMenu.classList.contains('active');
+        if (e.key === 'Escape' && isActive) {
             closeMobileMenu();
         }
     });

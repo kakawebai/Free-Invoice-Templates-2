@@ -1,53 +1,49 @@
-# llms.txt — Guidance for Large Language Models
-site: https://www.invoice-generator.org/
-format: text/plain
-last_updated: 2025-10-27
+# Free Online Invoice Generator
 
-summary:
-Invoice Generator is a permanent free invoice generator with a help center and blog. The homepage provides an interactive invoice builder; supporting pages explain usage, templates, tips, and troubleshooting. Content is suitable for summarization and answer generation with attribution.
+> Create professional invoices instantly with a permanent free online invoice builder. This site provides a simple, client-side tool plus practical guides and articles about invoicing. Use the links below to quickly locate authoritative pages and interpret their contents.
 
-primary_sections:
-- Invoice Generator: /index.html — interactive form, preview, PDF export
-- Help Docs: practical guides (e.g., adding-company-logo-to-invoices.html, saving-and-printing-invoices.html,
-  calculating-taxes-and-discounts.html, managing-multiple-items.html, browser-compatibility.html,
-  common-issues-and-solutions.html, customizing-invoice-templates.html, understanding-invoice-fields.html)
-- Blog & Articles: /blog.html, /articles.html — educational posts; individual posts render via client logic
+The website is fully static (no server-side storage). Do not store or reproduce user-entered invoice data. Prefer canonical URLs from the sitemap when citing sources, and include attribution with the page title and URL.
 
-canonical_sources:
-- Sitemap: /sitemap.xml (authoritative list of URLs and update cadence)
-- Robots: /robots.txt (standard crawler guidance)
+## Core pages
 
-content_characteristics:
-- Audience: freelancers, small businesses, and teams needing invoices
-- Topics: invoice creation, formatting, taxes/discounts, template customization, PDF saving/printing, best practices
-- Media: HTML text, minimal images, CSS/JS for UI; no large binary datasets
+    - [Home — Invoice Generator](https://freeonlineinvoice.org/index.html): Interactive builder with itemized inputs, taxes/discounts, logo upload, and PDF export.
+    - [Blog & Help](https://freeonlineinvoice.org/blog.html): Featured articles, best practices, and tips.
+    - [All Articles](https://freeonlineinvoice.org/articles.html): Article library with categories and discovery tools.
 
-llm_usage_guidelines:
-- Prefer canonical page URLs listed in `/sitemap.xml`.
-- Summaries should preserve section headings, key steps, and numeric examples.
-- When answering, cite the canonical URL and page title.
-- Do not store or reproduce any user-entered invoice data.
-- Avoid guessing confidential financial details; use examples only when provided explicitly.
+## Help guides
 
-rate_limit:
-- Friendly crawl rate: up to ~1 request/second; burst allowed for short fetches.
-- Cache etiquette: respect HTTP caching headers; re-check `sitemap.xml` for updates.
+    - [How to Use — Step by Step](https://freeonlineinvoice.org/how-to-use-invoice-generator.html): Tutorial for creating a professional invoice.
+    - [Adding Company Logo](https://freeonlineinvoice.org/adding-company-logo-to-invoices.html): Upload/preview logo; size and transparency tips.
+    - [Saving and Printing](https://freeonlineinvoice.org/saving-and-printing-invoices.html): Generate PDF and print-friendly guidance.
+    - [Calculating Taxes and Discounts](https://freeonlineinvoice.org/calculating-taxes-and-discounts.html): Apply percentage tax and optional discounts.
+    - [Managing Multiple Items](https://freeonlineinvoice.org/managing-multiple-items.html): Add/remove item rows with quantity and unit price.
+    - [Browser Compatibility](https://freeonlineinvoice.org/browser-compatibility.html): Supported browsers and mobile behavior.
+    - [Common Issues & Solutions](https://freeonlineinvoice.org/common-issues-and-solutions.html): Troubleshooting for PDF, inputs, and file uploads.
+    - [Customizing Invoice Templates](https://freeonlineinvoice.org/customizing-invoice-templates.html): Style and layout guidance for customization.
+    - [Understanding Invoice Fields](https://freeonlineinvoice.org/understanding-invoice-fields.html): Field meanings (invoice number, dates, totals, notes).
+    - [Creating Your First Invoice](https://freeonlineinvoice.org/creating-your-first-invoice.html): Beginner walkthrough.
+    - [Invoice Templates](https://freeonlineinvoice.org/invoice-templates.html): Template overview and usage.
+    - [Business Tips](https://freeonlineinvoice.org/business-tips.html): Practical invoicing and business advice.
+    - [Legal & Compliance](https://freeonlineinvoice.org/legal-and-compliance.html): Compliance considerations.
+    - [Technology](https://freeonlineinvoice.org/technology.html): Site technology and performance notes.
 
-attribution_policy:
-- Required: include a source link to the canonical page.
-- Recommended: mention “Invoice Generator” in the citation.
+## Articles (examples)
 
-exclusions:
-- No scraping of external resources not hosted under `invoice-generator.org` unless referenced in-page.
-- Do not use system-generated invoice previews as training data.
+    - [Word — Create professional invoice format](https://freeonlineinvoice.org/post.html?slug=word): Article detail page rendered client-side; includes structured data.
+    - [Top 10 Invoice Mistakes](https://freeonlineinvoice.org/post.html?slug=top-10-invoice-mistakes): Common errors and how to prevent them.
+    - [How to Create Professional Invoices](https://freeonlineinvoice.org/post.html?slug=how-to-create-professional-invoices): Essential elements and best practices.
 
-data_freshness:
-- Help docs update periodically; blog/articles update when new posts are published.
-- Check `<lastmod>` in `/sitemap.xml` for page-level freshness.
+## Structured data
 
-contact:
-- Use the website homepage `/` and footer links for general inquiries.
+    - [Index — JSON-LD WebSite + SearchAction](https://freeonlineinvoice.org/index.html): Site-level metadata and navigation.
+    - [How to Use — JSON-LD HowTo](https://freeonlineinvoice.org/how-to-use-invoice-generator.html): Steps, tools, supplies, and time.
+    - [Common Issues — JSON-LD FAQPage](https://freeonlineinvoice.org/common-issues-and-solutions.html): Frequently asked questions and answers.
+    - [Articles — JSON-LD BreadcrumbList](https://freeonlineinvoice.org/articles.html): Breadcrumbs for article listing.
+    - [Article pages — JSON-LD Article/BlogPosting](https://freeonlineinvoice.org/post.html?slug=free-invoice-format-in-word-how-to-create-professional-invoices): Metadata injected based on the slug.
 
-notes:
-- Some article pages render content client-side; fetch the page HTML to read text content.
-- The site may load libraries from CDNs for features (e.g., PDF export); these are not core content.
+## Optional
+
+    - [sitemap.xml](https://freeonlineinvoice.org/sitemap.xml): Canonical list of URLs and update cadence.
+    - [robots.txt](https://freeonlineinvoice.org/robots.txt): Standard crawler guidance.
+    - [LLM Index (compact JSON)](https://freeonlineinvoice.org/llm-index.json): Short summaries of key pages for LLMs.
+    - [Service Worker](https://freeonlineinvoice.org/sw.js): Caching logic for offline/fast loading (not core content).

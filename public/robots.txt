@@ -23,7 +23,7 @@ User-agent: CCBot
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.invoice-generator.org/sitemap.xml
+Sitemap: https://freeonlineinvoice.org/sitemap.xml
 
 # Allow search engines to index CSS and JS for proper rendering
 Allow: /styles.css
