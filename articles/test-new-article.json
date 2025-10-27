@@ -1,0 +1,10 @@
+{
+  "article": {
+    "title": "测试文章 - N8N自动化发布测试",
+    "description": "这是通过N8N自动化发布的测试文章，用于验证完整的发布流程。",
+    "content": "<h1>测试文章 - N8N自动化发布测试</h1>\n\n<p>这篇文章是通过N8N自动化工作流发布的测试文章，用于验证从AI Agent生成内容到GitHub自动更新的完整流程。</p>\n\n<h2>自动化发布流程验证</h2>\n<p>通过N8N自动化，我们可以实现：</p>\n<ul>\n  <li>AI Agent自动生成SEO优化内容</li>\n  <li>自动更新GitHub仓库的文章列表</li>\n  <li>触发Vercel自动部署</li>\n  <li>完整的端到端自动化</li>\n</ul>\n\n<h2>技术架构</h2>\n<p>这个自动化系统包含以下组件：</p>\n<ol>\n  <li><strong>Webhook接收器</strong> - 接收新文章请求</li>\n  <li><strong>AI Agent</strong> - 生成SEO优化内容</li>\n  <li><strong>GitHub API集成</strong> - 更新文章数据</li>\n  <li><strong>Vercel部署</strong> - 自动发布网站</li>\n</ol>\n\n<p>如果这篇文章成功发布，说明N8N自动化配置完全正确！</p>",
+    "author": "N8N-Automation",
+    "category": "technology",
+    "tags": ["n8n", "automation", "github", "vercel"]
+  }
+}
