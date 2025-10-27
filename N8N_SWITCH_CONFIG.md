@@ -10,7 +10,8 @@
 #### Send Headers
 - **状态**: `开启`
 - **Specify Headers**: `Using Fields Below`
-- **配置**:
+- **界面说明**: 选择"Using Fields Below"后，界面会显示字段供您填写
+- **配置字段**:
   - **Name**: `Content-Type`, **Value**: `application/json`
   - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
   - **Name**: `User-Agent`, **Value**: `N8N-Automation`
@@ -28,7 +29,8 @@
 #### Send Headers
 - **状态**: `开启`
 - **Specify Headers**: `Using Fields Below`
-- **配置**:
+- **界面说明**: 选择"Using Fields Below"后，界面会显示字段供您填写
+- **配置字段**:
   - **Name**: `Content-Type`, **Value**: `application/json`
   - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
   - **Name**: `User-Agent`, **Value**: `N8N-Automation`
@@ -49,7 +51,8 @@
 #### 使用Fields Below配置Body:
 - **Content Type**: `JSON`
 - **Specify Body**: `Using Fields Below`
-- **配置**:
+- **界面说明**: 选择"Using Fields Below"后，界面会显示字段供您填写
+- **配置字段**:
   - **Name**: `message`, **Value**: `Add new article via N8N automation: {{ $json.article.title }}`
   - **Name**: `content`, **Value**: `{{ $json.encodedContent }}`
   - **Name**: `sha`, **Value**: `{{ $json.currentSHA }}`
@@ -68,12 +71,17 @@
 - **GET请求**: 开启 (需要认证和内容类型)
 - **PUT请求**: 开启 (需要认证和内容类型)
 
-#### 必要的Headers (Using Fields Below):
-- **Name**: `Content-Type`, **Value**: `application/json` - 指定JSON格式
-- **Name**: `Accept`, **Value**: `application/vnd.github.v3+json` - GitHub API版本
-- **Name**: `User-Agent`, **Value**: `N8N-Automation` - 用户代理标识
+#### 必要的Headers配置:
 
-#### 使用JSON格式配置Headers:
+##### 使用Fields Below方式:
+- **Specify Headers**: `Using Fields Below`
+- **界面**: 会出现Name和Value字段供填写
+- **配置**:
+  - **Name**: `Content-Type`, **Value**: `application/json` - 指定JSON格式
+  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json` - GitHub API版本
+  - **Name**: `User-Agent`, **Value**: `N8N-Automation` - 用户代理标识
+
+##### 使用JSON格式:
 - **Specify Headers**: `Using JSON`
 - **JSON配置**:
 ```json
@@ -114,6 +122,7 @@
 ##### 使用Fields Below格式:
 - **Content Type**: `JSON`
 - **Specify Body**: `Using Fields Below`
+- **界面**: 会出现Name和Value字段供填写
 - **配置**:
   - **Name**: `message`, **Value**: `提交消息`
   - **Name**: `content`, **Value**: `Base64编码的文件内容`
@@ -127,7 +136,7 @@
 1. **Parameters**: Method=GET, URL=GitHub API URL
 2. **Authentication**: 使用GitHub API Token凭证
 3. **Send Query Parameters**: 关闭
-4. **Send Headers**: 开启，配置Headers
+4. **Send Headers**: 开启，选择"Using Fields Below"，填写Headers
 5. **Send Body**: 关闭
 6. **Options**: 设置超时和重定向
 
@@ -135,8 +144,8 @@
 1. **Parameters**: Method=PUT, URL=GitHub API URL
 2. **Authentication**: 使用GitHub API Token凭证
 3. **Send Query Parameters**: 关闭
-4. **Send Headers**: 开启，配置Headers
-5. **Send Body**: 开启，配置JSON Body
+4. **Send Headers**: 开启，选择"Using Fields Below"，填写Headers
+5. **Send Body**: 开启，选择"Using JSON"，填写Body内容
 6. **Options**: 设置超时和重定向
 
 ---
