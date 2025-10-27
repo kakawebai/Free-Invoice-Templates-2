@@ -10,11 +10,11 @@
 #### Send Headers
 - **状态**: `开启`
 - **Specify Headers**: `Using Fields Below`
-- **界面说明**: 选择"Using Fields Below"后，界面会显示字段供您填写
-- **配置字段**:
-  - **Name**: `Content-Type`, **Value**: `application/json`
-  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
-  - **Name**: `User-Agent`, **Value**: `N8N-Automation`
+- **界面操作**: 选择"Using Fields Below"后，点击"Add Header"按钮添加Headers
+- **需要添加的Headers**:
+  - 点击"Add Header"，在Name输入`Content-Type`，Value输入`application/json`
+  - 点击"Add Header"，在Name输入`Accept`，Value输入`application/vnd.github.v3+json`
+  - 点击"Add Header"，在Name输入`User-Agent`，Value输入`N8N-Automation`
 
 #### Send Body
 - **状态**: `关闭` (GET请求不需要Body)
@@ -29,11 +29,11 @@
 #### Send Headers
 - **状态**: `开启`
 - **Specify Headers**: `Using Fields Below`
-- **界面说明**: 选择"Using Fields Below"后，界面会显示字段供您填写
-- **配置字段**:
-  - **Name**: `Content-Type`, **Value**: `application/json`
-  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json`
-  - **Name**: `User-Agent`, **Value**: `N8N-Automation`
+- **界面操作**: 选择"Using Fields Below"后，点击"Add Header"按钮添加Headers
+- **需要添加的Headers**:
+  - 点击"Add Header"，在Name输入`Content-Type`，Value输入`application/json`
+  - 点击"Add Header"，在Name输入`Accept`，Value输入`application/vnd.github.v3+json`
+  - 点击"Add Header"，在Name输入`User-Agent`，Value输入`N8N-Automation`
 
 #### Send Body
 - **状态**: `开启`
@@ -75,11 +75,11 @@
 
 ##### 使用Fields Below方式:
 - **Specify Headers**: `Using Fields Below`
-- **界面**: 会出现Name和Value字段供填写
-- **配置**:
-  - **Name**: `Content-Type`, **Value**: `application/json` - 指定JSON格式
-  - **Name**: `Accept`, **Value**: `application/vnd.github.v3+json` - GitHub API版本
-  - **Name**: `User-Agent`, **Value**: `N8N-Automation` - 用户代理标识
+- **界面操作**: 需要手动点击"Add Header"按钮添加每个Header
+- **配置步骤**:
+  - 点击"Add Header"，Name输入`Content-Type`，Value输入`application/json` - 指定JSON格式
+  - 点击"Add Header"，Name输入`Accept`，Value输入`application/vnd.github.v3+json` - GitHub API版本
+  - 点击"Add Header"，Name输入`User-Agent`，Value输入`N8N-Automation` - 用户代理标识
 
 ##### 使用JSON格式:
 - **Specify Headers**: `Using JSON`
