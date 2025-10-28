@@ -226,6 +226,13 @@ function buildPostData() {
    if (!postContentDiv) return; // 在非 post 页面（如 articles.html）不执行渲染逻辑
    const params = new URLSearchParams(window.location.search);
    const slug = params.get('slug');
+   // 辅助函数：按发布时间排序（非法日期回退为0）
+   function getSortTime(a) {
+     try {
+       const t = Date.parse(a && a.published_at);
+       return isNaN(t) ? 0 : t;
+     } catch (e) { return 0; }
+   }
  
    if (!slug) {
      postContentDiv.innerHTML = '<p>Article not found. No slug provided.</p>';

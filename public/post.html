@@ -114,9 +114,8 @@
         var authorName = article.author || 'FreeOnlineInvoice.org';
 
         document.title = title;
-        if (container) {
-            container.innerHTML = (article.content || '');
-        }
+        // 由 post-data.js 负责完整的文章布局与容器渲染，这里不再直接写入内容，避免覆盖样式结构
+        // if (container) { /* no-op */ }
 
         // 更新常用 meta/OG/Twitter
         setMeta('meta[name="description"]', 'content', truncate(descPlain, 300));
