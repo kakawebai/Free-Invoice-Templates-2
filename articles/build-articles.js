@@ -16,6 +16,21 @@ function toExcerpt(input, max = 200) {
   return text.slice(0, max) + '…';
 }
 
+// 安全日期显示：缺失或非法日期时返回占位符
+function safeDate(dateStr) {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '—' : d.toLocaleDateString();
+}
+
+// 用于排序的时间戳：优先 published_at，其次 created_at，最后 0
+function getSortTime(a) {
+  const t = a && (a.published_at || a.created_at);
+  if (!t) return 0;
+  const d = new Date(t);
+  return isNaN(d.getTime()) ? 0 : d.getTime();
+}
+
 console.log('🚀 开始构建文章页面...');
 
 // 生成博客首页 (blog.html)
@@ -25,17 +40,16 @@ function buildBlogPage() {
     // 读取现有的blog.html作为模板
     let blogContent = fs.readFileSync('./public/blog.html', 'utf8');
     
-    // 生成最新的文章列表
+    // 生成最新的文章列表 - 修复：显示所有文章，无限制数量
     const latestArticles = articles
-        .filter(article => article.featured)
-        .slice(0, 6) // 最多显示6篇文章
+        .sort((a, b) => getSortTime(b) - getSortTime(a)) // 按发布时间倒序
         .map(article => `
             <article class="article-card">
                 <h3><a href="post.html?slug=${article.slug}">${article.title}</a></h3>
-                <p class="article-excerpt">${article.description}</p>
+                <p class="article-excerpt">${toExcerpt(article.description || article.content, 200)}</p>
                 <div class="article-meta">
                     <span class="category">${article.category}</span>
-                    <span class="date">${new Date(article.published_at).toLocaleDateString()}</span>
+                    <span class="date">${safeDate(article.published_at)}</span>
                 </div>
             </article>
         `).join('');
@@ -61,17 +75,17 @@ function buildArticlesPage() {
 
   // 生成静态文章列表 HTML
   const articlesHTML = articles
-    .sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
+    .sort((a, b) => getSortTime(b) - getSortTime(a))
     .map(article => `
       <article class="article-card" data-category="${article.category}" data-tags="${(article.tags || []).join(',')}">
         <div class="article-card-header">
           <h3><a href="post.html?slug=${article.slug}">${article.title}</a></h3>
           <div class="article-meta">
             <span class="category">${article.category}</span>
-            <time datetime="${article.published_at}">${new Date(article.published_at).toLocaleDateString()}</time>
+            <time datetime="${article.published_at || ''}">${safeDate(article.published_at)}</time>
           </div>
         </div>
-        <div class="article-excerpt">${toExcerpt(article.description, 200)}</div>
+        <div class="article-excerpt">${toExcerpt(article.description || article.content, 200)}</div>
         <div class="article-footer">
           <div class="article-tags">${(article.tags || []).map(tag => `<a class="tag" href="articles.html?tag=${encodeURIComponent(tag)}">${tag}</a>`).join('')}</div>
           <a href="post.html?slug=${article.slug}" class="read-more">Read More →</a>
@@ -188,8 +202,17 @@ function buildPostData() {
   // 将 Markdown 转为 HTML（如已是 HTML 则直接使用）
   const preparedArticlesObj = articles.reduce((acc, article) => {
     const prepared = { ...article };
+    // 内容转换
     const isHTML = /<\s*(p|h\d|ul|ol|li|a|strong|em)\b/i.test(String(prepared.content || ''));
     prepared.content = isHTML ? (prepared.content || '') : marked.parse(String(prepared.content || ''));
+    // 描述回退：无 description 时基于 content 生成摘要
+    if (!prepared.description || String(prepared.description).trim() === '') {
+      prepared.description = toExcerpt(prepared.content, 200);
+    }
+    // 日期回退：无或非法 published_at 时设为今日
+    if (!prepared.published_at || isNaN(new Date(prepared.published_at).getTime())) {
+      prepared.published_at = new Date().toISOString().split('T')[0];
+    }
     acc[prepared.slug] = prepared;
     return acc;
   }, {});
@@ -242,16 +265,16 @@ function buildPostData() {
      .sort((x, y) => (y.score - x.score) || (y.dt - x.dt))
      .slice(0, 4)
      .map(({ a }) => a);
-   const relatedHTML = relatedArticles.length > 0
+       const relatedHTML = relatedArticles.length > 0
      ? '<section class="related-posts"><h2>Related Articles</h2><ul>' +
        relatedArticles.map(function(r){
-         return '<li><a href="post.html?slug=' + r.slug + '">' + r.title + '</a> <span class="related-meta">(' + new Date(r.published_at).toLocaleDateString() + ')</span></li>';
+         return '<li><a href="post.html?slug=' + r.slug + '">' + r.title + '</a> <span class="related-meta">(' + (isNaN(new Date(r.published_at).getTime()) ? '—' : new Date(r.published_at).toLocaleDateString()) + ')</span></li>';
        }).join('') +
        '</ul></section>'
      : '';
  
    // 上一篇 / 下一篇
-   const sortedByDate = allArticles.slice().sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
+  const sortedByDate = allArticles.slice().sort((a, b) => getSortTime(a) - getSortTime(b));
    const idx = sortedByDate.findIndex(a => a.slug === slug);
    const prev = idx > 0 ? sortedByDate[idx - 1] : null;
    const next = idx < sortedByDate.length - 1 ? sortedByDate[idx + 1] : null;
