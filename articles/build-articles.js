@@ -167,7 +167,7 @@ function buildArticlesPage() {
   articlesContent = articlesContent.replace(/<script>[\s\S]*?<\/script>/, filterScript);
 
   // 注入 ItemList JSON-LD 和 canonical
-  const siteBaseUrl = 'https://www.invoice-generator.org';
+  const siteBaseUrl = 'https://freeonlineinvoice.org';
   const sortedForItemList = articles
     .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
   const itemListElements = sortedForItemList.map((a, idx) => ({
@@ -332,7 +332,7 @@ function buildPostData() {
 function updateSitemap() {
     console.log('🗺️ 更新站点地图...');
     
-    const baseUrl = 'https://www.invoice-generator.org';
+    const baseUrl = 'https://freeonlineinvoice.org';
     const today = new Date().toISOString().split('T')[0];
     
     let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
