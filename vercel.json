@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build:articles",
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/(llms\\.txt|llm-index\\.json|sitemap\\.xml)",

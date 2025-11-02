@@ -43,7 +43,12 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="/styles.min.css" as="style">
     
-    <!-- DNS prefetch/preconnect removed to avoid non-project domains -->
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
     <!-- Removed Supabase client and config as project no longer uses Supabase -->
     
@@ -71,7 +76,11 @@
           "name": "Free Online Invoice Generator",
           "url": "https://freeonlineinvoice.org/",
           "logo": "https://freeonlineinvoice.org/images/logo.png",
-          "description": "Free Online Invoice generator for creating professional business invoices instantly."
+          "description": "Free online invoice generator for creating professional business invoices instantly.",
+          "sameAs": [
+            "https://twitter.com/invoice-generator",
+            "https://facebook.com/invoice-generator"
+          ]
         },
         {
           "@type": "WebSite",
@@ -166,7 +175,7 @@
         <header role="banner">
             <div class="header-content" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1 itemprop="name">Free Online Invoice</h1>
+                    <h1 itemprop="name">Free online invoice</h1>
                     <p class="subtitle" itemprop="description">Permanent free online template</p>
                 </div>
                 <div class="header-actions">
@@ -402,8 +411,8 @@
 
         <footer class="blog-footer">
             <div class="footer-content">
-                <p>&copy; 2025 FreeOnlineInvoice.org - Professional Invoice Generator</p>
-                <p>Need help? <a href="mailto:support@freeonlineinvoice.org">Contact our support team</a></p>
+                <p>&copy; 2025 InvoiceGenerator.org - Professional Invoice Generator</p>
+                <p>Need help? <a href="mailto:support@invoice-generator.org">Contact our support team</a></p>
             </div>
         </footer>
     </div>

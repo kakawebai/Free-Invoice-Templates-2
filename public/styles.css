@@ -978,7 +978,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .doc-links a {
-    color: var(--primary-color);
+    color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease;
     display: block;
@@ -987,7 +987,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .doc-links a:hover {
-    color: var(--primary-hover);
+    color: var(--primary-color);
 }
 
 .blog-categories {
@@ -1959,23 +1959,4 @@ input::placeholder, textarea::placeholder {
     .post-page .article-prev-next .next-article {
         flex: 0 0 auto;
     }
-}
-/* Remove underline from site title link */
-header h1 a {
-    text-decoration: none;
-}
-header h1 a:hover,
-header h1 a:focus {
-    text-decoration: none;
-}
-/* Global link color unification */
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.2s ease, text-decoration-color 0.2s ease;
-}
-a:hover,
-a:focus {
-    color: var(--primary-hover);
-    text-decoration: underline;
 }
